@@ -1,10 +1,27 @@
 
+body {
+    background: whitesmoke;
+    margin: 0;
+}
+
 #calculator {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
+}
+
+#screen {
+    height: 100px;
+    width: 400px;
+    outline:1px black solid;
+    background-color: white;
+    text-align:right;
+    line-height: 100px;
+    margin-right: 0;
+    font-size: 30px;
+    overflow: hidden;
 }
 
 #buttons-top {
@@ -28,5 +45,7 @@ button {
     width: 100px;
     height: 100px;
     background-color: rgb(230, 227, 227);
+    border: none;
     outline:1px black solid;
+    font-size: 30px;
 }

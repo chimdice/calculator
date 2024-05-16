@@ -1,61 +1,68 @@
 
 const btns = document.querySelectorAll("button");
+const screen = document.querySelector("#screen");
 
 function checkInput (input) {
     if (! operationsArray.includes(input)) {
         if (operation == "") {
             firstNumber += input;
-            console.log(firstNumber);
+            showNumber(screen, firstNumber);
             listOfOperations.push("first");
         } else {
         secondNumber += input;
-        console.log(secondNumber);
-        listOfOperations.push("second")
+        showNumber(screen, secondNumber);
+        listOfOperations.push("second");
         };
     } else {
-        if (firstNumber != "") {
-            if (input == "=" && secondNumber != "") {
-                answer = commupte();
-                console.log(answer);
-                firstNumber = "";
-                operation = "";
-                secondNumber = "";
-                answer = 0;
-            } else if (input == "clear") {
-                firstNumber = "";
-                operation = "";
-                secondNumber = "";
-                answer = 0;
-            } else if (input == "backspace") {
-                let lastTask = listOfOperations[listOfOperations.length-1];
 
-                switch (lastTask) {
-                    case "first":
-                    firstNumber = firstNumber.slice(0,-1);
-                    console.log(firstNumber);
-                    break;
+        if (input == "clear") {
+            firstNumber = "";
+            operation = "";
+            secondNumber = "";
+            answer = 0;
+            showNumber(screen, "");
+        }   else if (firstNumber != "") {
+                if (input == "=" && secondNumber != "") {
+                    if (Number(secondNumber) == 0) {
+                        showNumber(screen, "Cannot divide by 0.")
+                    } else {
+                    answer = Math.round(commupte()*1000) /1000;
+                    showNumber(screen, answer.toString());
+                    firstNumber = "";
+                    operation = "";
+                    secondNumber = "";
+                    answer = 0;
+                    };
 
-                    case "second":
-                    secondNumber = secondNumber.slice(0,-1);
-                    console.log(secondNumber);
-                    break;
+                } else if (input == "backspace") {
+                    let lastTask = listOfOperations[listOfOperations.length-1];
 
-                    case "operation":
-                    operation = operation.slice(0,-1);
-                    console.log(operation);
-                    break;
-                }
+                    switch (lastTask) {
+                        case "first":
+                        firstNumber = firstNumber.slice(0,-1);
+                        showNumber(screen, firstNumber);
+                        break;
 
-                listOfOperations.pop();
-                
-            } else {
-                if (operation == "") {
-                    operation = input;
-                    listOfOperations.push("operation")
-                }
+                        case "second":
+                        secondNumber = secondNumber.slice(0,-1);
+                        showNumber(screen, secondNumber);
+                        break;
+
+                        case "operation":
+                        operation = operation.slice(0,-1);
+                        break;
+                    }
+
+                    listOfOperations.pop();
+
+                    } else {
+                    if (operation == "") {
+                        operation = input;
+                        listOfOperations.push("operation")
+                    }
+                };
             };
-        };
-    } ;
+        } ;
 };
 
 function commupte () {
@@ -76,6 +83,12 @@ function commupte () {
         return first / second;
     }
 };
+
+function showNumber (screen, input) {
+
+    screen.textContent = ""
+    screen.textContent = input
+}
 
 btns.forEach(btn => {
     btn.addEventListener("click", () => {
