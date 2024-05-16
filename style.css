@@ -1,0 +1,22 @@
+
+#calculator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#buttons-top {
+    display: flex;
+    flex-wrap: wrap;
+    width:400px;
+    height: 400px;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(230, 227, 227);
+    outline:1px black solid;
+}
