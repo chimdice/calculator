@@ -6,9 +6,11 @@ function checkInput (input) {
         if (operation == "") {
             firstNumber += input;
             console.log(firstNumber);
+            listOfOperations.push("first");
         } else {
         secondNumber += input;
         console.log(secondNumber);
+        listOfOperations.push("second")
         };
     } else {
         if (firstNumber != "") {
@@ -19,8 +21,38 @@ function checkInput (input) {
                 operation = "";
                 secondNumber = "";
                 answer = 0;
+            } else if (input == "clear") {
+                firstNumber = "";
+                operation = "";
+                secondNumber = "";
+                answer = 0;
+            } else if (input == "backspace") {
+                let lastTask = listOfOperations[listOfOperations.length-1];
+
+                switch (lastTask) {
+                    case "first":
+                    firstNumber = firstNumber.slice(0,-1);
+                    console.log(firstNumber);
+                    break;
+
+                    case "second":
+                    secondNumber = secondNumber.slice(0,-1);
+                    console.log(secondNumber);
+                    break;
+
+                    case "operation":
+                    operation = operation.slice(0,-1);
+                    console.log(operation);
+                    break;
+                }
+
+                listOfOperations.pop();
+                
             } else {
-            operation = input;
+                if (operation == "") {
+                    operation = input;
+                    listOfOperations.push("operation")
+                }
             };
         };
     } ;
@@ -56,5 +88,6 @@ let firstNumber = "";
 let operation = "";
 let secondNumber = "";
 let answer = 0;
+const listOfOperations = [];
 
-const operationsArray = ["+", "-", "x", "/", "="]
+const operationsArray = ["+", "-", "x", "/", "=", "clear", "backspace"]

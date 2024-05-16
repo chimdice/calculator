@@ -14,6 +14,16 @@
     height: 400px;
 }
 
+#buttons-bottom {
+    display: flex;
+    width: 400px;
+    height: 100px;
+}
+
+#bottom-btn {
+    width: 200px;
+}
+
 button {
     width: 100px;
     height: 100px;
