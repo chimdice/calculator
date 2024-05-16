@@ -16,13 +16,15 @@ function checkInput (input) {
     } else {
 
         if (input == "clear") {
+            console.log("true")
             firstNumber = "";
             operation = "";
             secondNumber = "";
             answer = 0;
             showNumber(screen, "");
+
         }   else if (firstNumber != "") {
-                if (input == "=" && secondNumber != "") {
+                if (input == "="  && secondNumber != "") {
                     if (Number(secondNumber) == 0) {
                         showNumber(screen, "Cannot divide by 0.")
                     } else {
@@ -58,12 +60,14 @@ function checkInput (input) {
                     } else {
                     if (operation == "") {
                         operation = input;
+                        console.log(input)
                         listOfOperations.push("operation")
                     }
                 };
             };
-        } ;
-};
+        };
+
+    };
 
 function commupte () {
     let first = Number(firstNumber);
@@ -81,8 +85,7 @@ function commupte () {
 
         case "/":
         return first / second;
-    }
-};
+}};
 
 function showNumber (screen, input) {
 
@@ -103,4 +106,4 @@ let secondNumber = "";
 let answer = 0;
 const listOfOperations = [];
 
-const operationsArray = ["+", "-", "x", "/", "=", "clear", "backspace"]
+const operationsArray = ["+", "-", "x", "/", "=", "clear", "backspace", "*", "Backspace", "Escape", "Enter"]
